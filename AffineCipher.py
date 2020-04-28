@@ -2,7 +2,7 @@
 This file will serve as purpose for encrypting and decrypting messages for the
 Affine Cipher.
 The Affine Cipher uses a key K: (a, b). The encryption and decryption
-function are as follows:
+functions are as follows:
                         ek(x): (ax + b)mod26
                         dk(x): a^-1(y - b)mod26
 
