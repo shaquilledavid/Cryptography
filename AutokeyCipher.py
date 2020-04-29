@@ -61,5 +61,36 @@ def encrypt(plaintext, k1):
                 i = i + 1
 
         return ciphertext
+
+
+def decrypt(ciphertext, k1):
+
+    if len(ciphertext) == 0:
+        return ''
+
+    elif len(ciphertext) == 1:
+        decrypt = (AlphaToNum[ciphertext] - k1) % 26
+        return key_list[val_list.index(decrypt)]
+
+    else:
+        i = 0
+        decrypt = (AlphaToNum[ciphertext[0]] - k1) % 26  #do the first letter
+        plaintext = key_list[val_list.index(decrypt)]
+        i = i + 1
+        while i < len(ciphertext):
+
+            if ciphertext[i] != ' ':
+                nextdecrypt = (AlphaToNum[ciphertext[i]] - AlphaToNum[ciphertext[i-1]]) % 26
+                plaintext = plaintext + key_list[val_list.index(nextdecrypt)]
+                i = i + 1
                 
+            else:
+                plaintext = plaintext + ' '
+                i = i + 1
+                nextencrypt = (AlphaToNum[ciphertext[i]] - AlphaToNum[ciphertext[i-2]]) % 26
+                plaintext = plaintext + key_list[val_list.index(nextdecrypt)]
+                i = i + 1
+
+        return plaintext
+    
         
