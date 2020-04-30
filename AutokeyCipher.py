@@ -98,29 +98,33 @@ def decrypt(ciphertext, k1):
     
 
 
-# a user to encrypt a message
+# run a program on startup
 print("Hello! Welcome to the Autokey Cipher.")
 
 print('')
 
 userplaintext = input("What message would you like me to encrypt for you? \n")
 
-print('')
 userkey = input("What number would you like to use for your initial key? \n")
 
 cipher = encrypt(userplaintext, int(userkey))
 print('')
-
-print("Your encrypted message is: \n" + cipher)
+print('...')
+print('Encryption Successful.')
+print('')
+print("Your encrypted message is \n" + cipher)
 print('')
 print('')
 
-answer = input("Would you like to decrypt a message? \n")
+answer = input("Would you like to decrypt a message? ('yes'/'no') \n")
 
 if answer == 'yes':
     print('')
     decryptquestion = input("Enter the message \n")
     userkey2 = input("Enter the initial key \n")
+    print('')
+    print('...')
+    print('Decryption Successful.')
     print('')
 
     print("The decrypted message is \n" + decrypt(decryptquestion, int(userkey2)))
