@@ -22,6 +22,9 @@ The encryption and decryption functions are as follows:
                     then ek(8) = (8 + 7)mod26 = 15 = 'p'
 
                     ciphertext = 'kp'
+
+                    dk(10) = (10-3)mod26
+                    dk(15) = (15-7)mod26
 """
 
 AlphaToNum = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6,
@@ -80,17 +83,54 @@ def decrypt(ciphertext, k1):
         while i < len(ciphertext):
 
             if ciphertext[i] != ' ':
-                nextdecrypt = (AlphaToNum[ciphertext[i]] - AlphaToNum[ciphertext[i-1]]) % 26
+                nextdecrypt = (AlphaToNum[ciphertext[i]] - AlphaToNum[plaintext[i-1]]) % 26
                 plaintext = plaintext + key_list[val_list.index(nextdecrypt)]
                 i = i + 1
                 
             else:
                 plaintext = plaintext + ' '
                 i = i + 1
-                nextencrypt = (AlphaToNum[ciphertext[i]] - AlphaToNum[ciphertext[i-2]]) % 26
+                nextdecrypt = (AlphaToNum[ciphertext[i]] - AlphaToNum[plaintext[i-2]]) % 26
                 plaintext = plaintext + key_list[val_list.index(nextdecrypt)]
                 i = i + 1
 
         return plaintext
     
-        
+
+
+# a user to encrypt a message
+print("Hello! Welcome to the Autokey Cipher.")
+
+print('')
+
+userplaintext = input("What message would you like me to encrypt for you? \n")
+
+print('')
+userkey = input("What number would you like to use for your initial key? \n")
+
+cipher = encrypt(userplaintext, int(userkey))
+print('')
+
+print("Your encrypted message is: \n" + cipher)
+print('')
+print('')
+
+answer = input("Would you like to decrypt a message? \n")
+
+if answer == 'yes':
+    print('')
+    decryptquestion = input("Enter the message \n")
+    userkey2 = input("Enter the initial key \n")
+    print('')
+
+    print("The decrypted message is \n" + decrypt(decryptquestion, int(userkey2)))
+
+    
+
+
+
+
+
+
+
+
