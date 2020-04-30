@@ -81,5 +81,47 @@ def decrypt(ciphertext, a, b):
                     i = i + 1
 
             return plaintext
-            
+
+
+
+
+# run a program on startup
+print("Hello! Welcome to the Affine Cipher.")
+
+print('')
+
+userplaintext = input("What message would you like me to encrypt for you? \n")
+
+userkey = input("What number would you like to use as the first value of your key? \n")
+userkey2 = input("What number would you like to use as the second value of your key? \n")
+
+cipher = encrypt(userplaintext, int(userkey), int(userkey2))
+print('')
+print('...')
+print('Encryption Successful.')
+print('')
+print("Your encrypted message is \n" + cipher)
+print('')
+print('')
+
+answer = input("Would you like to decrypt a message? ('yes'/'no') \n")
+
+if answer == 'yes':
+    print('')
+    decryptquestion = input("Enter the message \n")
+    userkey3 = input("Enter the first key value \n")
+    userkey4 = input("Enter second key value \n")
+    print('')
+    print('...')
+    if int(userkey3) not in multiplicativeInverse.values():
+        print("Sorry, this decryption is not possible. The first key value is not coprime with 26")
+
+    else:
+        print('Decryption Successful.')
+        print('')
+        print("The decrypted message is \n" + decrypt(decryptquestion, int(userkey3), int(userkey4)))
+
+    
+
+
                         
