@@ -1,3 +1,7 @@
+import os
+from twilio.rest import Client
+
+
 """
 This file will cover the Vignere Cipher.
 The Vigenere Cipher uses a the characters of a word as keys. It uses the first
@@ -118,28 +122,24 @@ print('')
 userkey = input("What would you like to use as your secret keyword? \n")
 
 cipher = encrypt(userplaintext, str(userkey))
-print('')
-print('...')
-print('Encryption Successful.')
-print('')
-print("Your encrypted message is: \n" + cipher)
-print('')
-print('')
 
-answer = input("Would you like to decrypt a message? ('yes'/'no') \n")
 
-if answer == 'yes':
-    print('')
-    decryptquestion = input("Enter the message \n")
-    userkey2 = input("Enter the secret keyword \n")
-    print('')
-    print('...')
-    print('Decryption Successful.')
-    print('')
+""" #UNCOMMENT THIS IF YOU WANT TO RUN THE MESSAGING PROCESS
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, auth_token)
 
-    print("The decrypted message is \n" + decrypt(decryptquestion, userkey2))
-       
-            
+message = client.messages \
+                .create(
+                     body= cipher,
+                     from_='+12186566795',
+                     to= os.environ['PHONE_NUMBER']
+                 )
+
+print(message.sid)
+"""
+
+
 
 
             
